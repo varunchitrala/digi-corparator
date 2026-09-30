@@ -1,0 +1,25 @@
+{
+  "name": "digital-corporator-platform",
+  "version": "1.0.0",
+  "description": "Digital Corporator & Smart Ward Management Platform - Multi-Tenant Municipal SaaS",
+  "private": true,
+  "scripts": {
+    "setup": "npm --prefix backend install && npm --prefix frontend install",
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "start:backend": "npm --prefix backend start",
+    "build:frontend": "npm --prefix frontend run build"
+  },
+  "keywords": [
+    "municipal",
+    "ward-management",
+    "smart-city",
+    "corporator-dashboard",
+    "saas",
+    "react",
+    "express",
+    "mysql"
+  ],
+  "author": "NagarSevak Engineering Team",
+  "license": "MIT"
+}
