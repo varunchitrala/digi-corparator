@@ -33,7 +33,7 @@ export const LoginPage = () => {
       } else if (role === 'CONTRACTOR') {
         navigate('/contractor/dashboard');
       } else if (role === 'CITIZEN') {
-        navigate('/citizen/services');
+        navigate('/citizen/dashboard');
       } else {
         navigate('/');
       }

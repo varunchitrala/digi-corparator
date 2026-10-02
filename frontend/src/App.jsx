@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { MainLayout } from './layouts/MainLayout';
 import { SuperAdminLayout } from './layouts/SuperAdminLayout';
 import { CorporatorLayout } from './layouts/CorporatorLayout';
+import { CitizenLayout } from './layouts/CitizenLayout';
 import { ProtectedRoute } from './components/ProtectedRoute';
 import { DashboardPage } from './pages/DashboardPage';
 import { LoginPage } from './pages/LoginPage';
@@ -88,6 +89,10 @@ import { CorpPaymentsPage } from './pages/funds/CorpPaymentsPage';
 import { CorpFinanceDashboardPage } from './pages/funds/CorpFinanceDashboardPage';
 
 // Phase 9 Citizen Services Pages
+import { CitizenDashboardPage } from './pages/citizen/CitizenDashboardPage';
+import { CitizenWardWorksPage } from './pages/citizen/CitizenWardWorksPage';
+import { CitizenHelplinePage } from './pages/citizen/CitizenHelplinePage';
+import { CitizenProfilePage } from './pages/citizen/CitizenProfilePage';
 import { CitizenServicesCatalogPage } from './pages/services/CitizenServicesCatalogPage';
 import { ServiceDetailsPage } from './pages/services/ServiceDetailsPage';
 import { CreateApplicationWizardPage } from './pages/services/CreateApplicationWizardPage';
@@ -348,11 +353,24 @@ export default function App() {
 
         {/* Protected Citizen Services Routes */}
         <Route
+          path="/citizen"
+          element={
+            <ProtectedRoute allowedRoles={['CITIZEN', 'SUPER_ADMIN', 'CORPORATOR']}>
+              <CitizenLayout>
+                <CitizenDashboardPage />
+              </CitizenLayout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
           path="/citizen/*"
           element={
             <ProtectedRoute allowedRoles={['CITIZEN', 'SUPER_ADMIN', 'CORPORATOR']}>
-              <MainLayout>
+              <CitizenLayout>
                 <Routes>
+                  <Route index element={<CitizenDashboardPage />} />
+                  <Route path="" element={<CitizenDashboardPage />} />
+                  <Route path="dashboard" element={<CitizenDashboardPage />} />
                   <Route path="complaints" element={<CitizenComplaintsPage />} />
                   <Route path="complaints/create" element={<CreateComplaintWizardPage />} />
                   <Route path="complaints/:id" element={<CitizenComplaintDetailsPage />} />
@@ -362,9 +380,12 @@ export default function App() {
                   <Route path="applications" element={<CitizenApplicationsPage />} />
                   <Route path="applications/:id" element={<CitizenApplicationDetailsPage />} />
                   <Route path="revenue" element={<CitizenRevenuePortalPage />} />
-                  <Route path="*" element={<CitizenServicesCatalogPage />} />
+                  <Route path="ward-works" element={<CitizenWardWorksPage />} />
+                  <Route path="helpline" element={<CitizenHelplinePage />} />
+                  <Route path="profile" element={<CitizenProfilePage />} />
+                  <Route path="*" element={<CitizenDashboardPage />} />
                 </Routes>
-              </MainLayout>
+              </CitizenLayout>
             </ProtectedRoute>
           }
         />
